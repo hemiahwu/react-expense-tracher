@@ -1,10 +1,16 @@
 import './App.css';
-import { Button } from 'antd';
+import { BrowserRouter as Routers, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import Test from './pages/Test';
 function App() {
   return (
     <div className='App'>
-      <h1>我的记账本</h1>
-      <Button type='primary'>Primary Button</Button>
+      <Routers>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/test' element={<Test />} />
+        </Routes>
+      </Routers>
     </div>
   );
 }
