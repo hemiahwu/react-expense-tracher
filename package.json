@@ -1,0 +1,24 @@
+{
+  "name": "expense-tracker",
+  "version": "1.0.0",
+  "description": "lesson-04:添加默认布局组件样式",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ms-online/expense-tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ms-online/expense-tracker/issues"
+  },
+  "homepage": "https://github.com/ms-online/expense-tracker#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.7.4",
+    "nodemon": "^2.0.20"
+  }
+}
