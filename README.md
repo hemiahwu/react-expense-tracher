@@ -1,1 +1,1 @@
-lesson-06:连接MongoDB数据库
+lesson-07:注册页面组件

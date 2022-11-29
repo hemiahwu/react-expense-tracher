@@ -4,7 +4,10 @@ body {
   font-family: 'Noto Sans SC', sans-serif !important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.primary{
+  background-color: #68B9FF;
+  padding:5px 20px;
+  color: white;
+  border:none;
+  border-radius: 3px;
 }
