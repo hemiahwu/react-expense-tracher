@@ -1,15 +1,33 @@
 import React from 'react';
 import { Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
+import '../resources/authentication.css';
 const Register = () => {
+  //提交成功后获取表单数据
+  const onFinish = async (values) => {
+    console.log(values);
+  };
+
   return (
     <div className='register'>
-      <div className='row'>
-        <div className='col-md-5'>{/* 左侧图片 */}</div>
+      <div className='row justify-content-center align-items-center w-100 h-100'>
+        <div className='col-md-5'>
+          {/* 左侧图片 */}
+          <div className='lottie'>
+            <lottie-player
+              src='https://assets4.lottiefiles.com/packages/lf20_06a6pf9i.json'
+              background='transparent'
+              speed='1'
+              loop
+              autoplay
+            ></lottie-player>
+          </div>
+        </div>
         <div className='col-md-4'>
           {/* form表单 */}
-          <Form>
+          <Form layout='vertical' onFinish={onFinish}>
             <h1>用户注册</h1>
+            <br />
             <Form.Item label='姓名' name='name'>
               <Input />
             </Form.Item>
@@ -17,7 +35,7 @@ const Register = () => {
               <Input />
             </Form.Item>
             <Form.Item label='密码' name='password'>
-              <Input.Password />
+              <Input type='password' />
             </Form.Item>
 
             <div className='d-flex justify-content-between align-items-center'>
