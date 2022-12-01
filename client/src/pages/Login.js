@@ -20,7 +20,7 @@ const Login = () => {
               <Input />
             </Form.Item>
             <Form.Item label='密码' name='password'>
-              <Input type='password' />
+              <Input type='password' autoComplete='off' />
             </Form.Item>
 
             <div className='d-flex justify-content-between align-items-center'>
