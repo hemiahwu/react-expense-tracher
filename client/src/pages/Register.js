@@ -1,11 +1,17 @@
 import React from 'react';
-import { Form, Input } from 'antd';
+import axios from 'axios';
+import { Form, Input,message } from 'antd';
 import { Link } from 'react-router-dom';
 import '../resources/authentication.css';
 const Register = () => {
   //提交成功后获取表单数据
   const onFinish = async (values) => {
-    console.log(values);
+    try {
+      await axios.post('/api/users/register',values);
+      message.success('注册成功！');
+    } catch (error) {
+      message.error('抱歉,出错了！')
+    }
   };
 
   return (

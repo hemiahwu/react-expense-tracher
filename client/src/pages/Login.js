@@ -1,11 +1,27 @@
 import React from 'react';
-import { Form, Input } from 'antd';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { Form, Input, message } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
 import '../resources/authentication.css';
 const Login = () => {
+  const navigate = useNavigate();
   //提交成功后获取表单数据
   const onFinish = async (values) => {
-    console.log(values);
+    try {
+      const response = await axios.post('/api/users/login', values);
+      //本地存储
+      localStorage.setItem(
+        'expense-tracker-user',
+        JSON.stringify({
+          ...response.data,
+          password: '',
+        })
+      );
+      navigate('/');
+      message.success('登录成功！');
+    } catch (error) {
+      message.error('登录失败！');
+    }
   };
 
   return (

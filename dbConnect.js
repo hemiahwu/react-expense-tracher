@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose.connect(
-  'mongodb+srv://msonline123:test123456@msonline.menjs.mongodb.net/?retryWrites=true&w=majority',
+  'mongodb+srv://msonline123:test123456@msonline.menjs.mongodb.net/expense-tracker',
   { useNewUrlParser: true, useunifiedTopology: true }
 );
 
