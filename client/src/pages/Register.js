@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Input,message } from 'antd';
+import { Form, Input, message } from 'antd';
 import { Link } from 'react-router-dom';
 import '../resources/authentication.css';
+import Spinner from '../components/Spinner';
 const Register = () => {
+  const [loading, setLoading] = useState(false);
   //提交成功后获取表单数据
   const onFinish = async (values) => {
     try {
-      await axios.post('/api/users/register',values);
+      setLoading(true);
+      await axios.post('/api/users/register', values);
       message.success('注册成功！');
+      setLoading(false);
     } catch (error) {
-      message.error('抱歉,出错了！')
+      message.error('抱歉,出错了！');
+      setLoading(false);
     }
   };
 
   return (
     <div className='register'>
+      {loading && <Spinner />}
       <div className='row justify-content-center align-items-center w-100 h-100'>
         <div className='col-md-5'>
           {/* 左侧图片 */}
