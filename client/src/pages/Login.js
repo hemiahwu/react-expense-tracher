@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Input, message } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
@@ -28,6 +28,12 @@ const Login = () => {
       message.error('登录失败！');
     }
   };
+  //若用户登录成功，不可以继续访问login页面
+  useEffect(() => {
+    if (localStorage.getItem('expense-tracker-user')) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <div className='register'>

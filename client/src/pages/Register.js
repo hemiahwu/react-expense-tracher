@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Input, message } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../resources/authentication.css';
 import Spinner from '../components/Spinner';
 const Register = () => {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   //提交成功后获取表单数据
   const onFinish = async (values) => {
     try {
@@ -18,7 +19,12 @@ const Register = () => {
       setLoading(false);
     }
   };
-
+  //若用户登录成功，不可以继续访问register页面
+  useEffect(() => {
+    if (localStorage.getItem('expense-tracker-user')) {
+      navigate('/');
+    }
+  }, []);
   return (
     <div className='register'>
       {loading && <Spinner />}

@@ -1,6 +1,26 @@
+import { Dropdown } from 'antd';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../resources/default-layout.css';
 const DefaultLayout = (props) => {
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('expense-tracker-user'));
+  const items = [
+    {
+      key: '1',
+      label: (
+        <li
+          onClick={() => {
+            localStorage.removeItem('expense-tracker-user');
+            navigate('/login');
+          }}
+        >
+          退出
+        </li>
+      ),
+    },
+  ];
+
   return (
     <div className='layout'>
       {/* header部分 */}
@@ -9,7 +29,9 @@ const DefaultLayout = (props) => {
           <h1 className='logo'>我的记账本</h1>
         </div>
         <div>
-          <h1 className='username'>用户姓名</h1>
+          <Dropdown menu={{ items }} placement='bottom'>
+            <h1 className='username'>{user.name}</h1>
+          </Dropdown>
         </div>
       </div>
 
