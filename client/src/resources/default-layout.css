@@ -40,7 +40,9 @@
 .ant-spin-dot-item {
     background-color: gray !important;
 }
-
+.ant-dropdown-menu-title-content a {
+    color:rgba(0, 0, 0, 0.75) !important;
+}
 @media screen and(max-width:700px){
     .layout{
         margin:0 15px;

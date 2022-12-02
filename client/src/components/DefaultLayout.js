@@ -9,14 +9,14 @@ const DefaultLayout = (props) => {
     {
       key: '1',
       label: (
-        <li
+        <a
           onClick={() => {
             localStorage.removeItem('expense-tracker-user');
             navigate('/login');
           }}
         >
           退出
-        </li>
+        </a>
       ),
     },
   ];

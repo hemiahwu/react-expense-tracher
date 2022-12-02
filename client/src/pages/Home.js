@@ -45,7 +45,7 @@ const Home = () => {
           </Form.Item>
           <Form.Item label='类型' name='type'>
             <Select
-              defaultValue='收入'
+              initialvalue='收入'
               options={[
                 {
                   value: 'income',
@@ -60,7 +60,7 @@ const Home = () => {
           </Form.Item>
           <Form.Item label='分类' name='category'>
             <Select
-              defaultValue='工资'
+              initialvalue='工资'
               options={[
                 {
                   value: 'salary',
