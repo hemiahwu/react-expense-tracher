@@ -1,4 +1,4 @@
-import { Form, Input, message, Modal, Select, Table } from 'antd';
+import { Form, Input, message, Modal, Select, Table, DatePicker } from 'antd';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import AddEditTransaction from '../components/AddEditTransaction';
@@ -7,10 +7,13 @@ import Spinner from '../components/Spinner';
 import '../resources/transaction.css';
 import moment from 'moment';
 const Home = () => {
+  const { RangePicker } = DatePicker;
   const [showAddEditTransactionModal, setShowAddEditTransactionModal] =
     useState(false);
   const [loading, setLoading] = useState(false);
   const [transactions, setTransactions] = useState([]);
+  const [frequency, setFrequency] = useState('7');
+  const [selectedRange, setSelectedRange] = useState([]);
   const getTransactions = async () => {
     try {
       const user = JSON.parse(localStorage.getItem('expense-tracker-user'));
@@ -19,6 +22,8 @@ const Home = () => {
         '/api/transactions/get-all-transactions',
         {
           userid: user._id,
+          frequency,
+          ...(frequency === 'custom' && { selectedRange }),
         }
       );
       setTransactions(response.data);
@@ -32,7 +37,7 @@ const Home = () => {
   //获取所有交易流水
   useEffect(() => {
     getTransactions();
-  }, []);
+  }, [frequency, selectedRange]);
 
   //定义表格columns
   const columns = [
@@ -68,7 +73,39 @@ const Home = () => {
       {loading && <Spinner />}
       {/* 上方:过滤及类型切换，添加交易按钮 */}
       <div className='filter d-flex justify-content-between align-items-center'>
-        <div></div>
+        <div className='filter d-flex justify-content-between align-items-center'>
+          <div className='d-flex flex-column'>
+            <h6>选择日期</h6>
+            <Select
+              value={frequency}
+              onChange={(value) => setFrequency(value)}
+              options={[
+                {
+                  value: '7',
+                  label: '最近一周',
+                },
+                {
+                  value: '30',
+                  label: '最近一月',
+                },
+                {
+                  value: '365',
+                  label: '最近一年',
+                },
+                {
+                  value: 'custom',
+                  label: '自定义',
+                },
+              ]}
+            />
+            {frequency === 'custom' && (
+              <RangePicker
+                value={selectedRange}
+                onChange={(value) => setSelectedRange(value)}
+              />
+            )}
+          </div>
+        </div>
         <div>
           <button
             className='primary'
