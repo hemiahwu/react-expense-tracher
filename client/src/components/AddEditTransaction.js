@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Form, Input, message, Modal, Select } from 'antd';
 import Spinner from '../components/Spinner';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 const AddEditTransaction = ({
   setShowAddEditTransactionModal,
   showAddEditTransactionModal,
+  getTransactions,
 }) => {
   const [loading, setLoading] = useState(false);
 
@@ -15,7 +17,9 @@ const AddEditTransaction = ({
       await axios.post('/api/transactions/add-transaction', {
         ...values,
         userid: user._id,
+        key: uuidv4(),
       });
+      getTransactions();
       setShowAddEditTransactionModal(false);
       setLoading(false);
       message.success('交易流水添加成功！');
