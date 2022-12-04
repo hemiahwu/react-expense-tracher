@@ -172,12 +172,6 @@ const Home = () => {
                 },
               ]}
             />
-            {frequency === 'custom' && (
-              <RangePicker
-                value={selectedRange}
-                onChange={(value) => setSelectedRange(value)}
-              />
-            )}
           </div>
         </div>
         <div className='d-flex'>

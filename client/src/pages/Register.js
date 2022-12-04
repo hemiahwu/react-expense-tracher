@@ -58,7 +58,7 @@ const Register = () => {
 
             <div className='d-flex justify-content-between align-items-center'>
               <Link to='/login'>已经注册，点击进入登录页面</Link>
-              <button className='primary' type='submit'>
+              <button className='secondary' type='submit'>
                 注册
               </button>
             </div>

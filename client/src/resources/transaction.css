@@ -44,3 +44,13 @@
 .inactive-icon{
     color: gray;
 }
+
+.ant-picker-range{
+    border:1px solid black !important;
+}
+
+@media screen and (max-width:600px){
+    .filter{
+        overflow-x: scroll;
+    }
+}
