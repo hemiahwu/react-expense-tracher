@@ -31,4 +31,27 @@ router.post('/get-all-transactions', async (req, res) => {
   }
 });
 
+//编辑交易流水API
+router.post('/edit-transaction', async (req, res) => {
+  try {
+    await Transaction.findOneAndUpdate(
+      { _id: req.body.transactionId },
+      req.body.payload
+    );
+    res.send('交易流水更新成功！');
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+//删除交易流水API
+router.post('/delete-transaction', async (req, res) => {
+  try {
+    await Transaction.findOneAndDelete({ _id: req.body.transactionId });
+    res.send('交易流水删除成功！');
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;

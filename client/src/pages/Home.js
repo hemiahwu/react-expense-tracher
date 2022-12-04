@@ -45,6 +45,21 @@ const Home = () => {
     }
   };
 
+  const deleteTransaction = async (record) => {
+    try {
+      setLoading(true);
+      await axios.post('/api/transactions/delete-transaction', {
+        transactionId: record._id,
+      });
+      message.success('交易流水删除成功！');
+      getTransactions();
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      message.error('抱歉，出错了！');
+    }
+  };
+
   //获取所有交易流水
   useEffect(() => {
     getTransactions();
@@ -91,7 +106,10 @@ const Home = () => {
                 setShowAddEditTransactionModal(true);
               }}
             />
-            <DeleteOutlined className='mx-3' />
+            <DeleteOutlined
+              className='mx-3'
+              onClick={() => deleteTransaction(record)}
+            />
           </div>
         );
       },

@@ -16,15 +16,31 @@ const AddEditTransaction = ({
     try {
       const user = JSON.parse(localStorage.getItem('expense-tracker-user'));
       setLoading(true);
-      await axios.post('/api/transactions/add-transaction', {
-        ...values,
-        userid: user._id,
-        key: uuidv4(),
-      });
-      getTransactions();
+      //判断是编辑交易流水还是添加交易流水
+      if (selectedItemForEdit) {
+        //进行编辑
+        await axios.post('/api/transactions/edit-transaction', {
+          payload: {
+            ...values,
+            userid: user._id,
+          },
+          transactionId: selectedItemForEdit._id,
+        });
+        getTransactions();
+        message.success('交易流水编辑成功！');
+      } else {
+        //进行添加
+        await axios.post('/api/transactions/add-transaction', {
+          ...values,
+          userid: user._id,
+          key: uuidv4(),
+        });
+        getTransactions();
+        message.success('交易流水添加成功！');
+      }
+      setSelectedItemForEdit(null);
       setShowAddEditTransactionModal(false);
       setLoading(false);
-      message.success('交易流水添加成功！');
     } catch (error) {
       setLoading(false);
       message.error('抱歉，出错了!');
