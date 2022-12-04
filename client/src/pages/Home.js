@@ -1,5 +1,10 @@
 import { Form, Input, message, Modal, Select, Table, DatePicker } from 'antd';
-import { UnorderedListOutlined, AreaChartOutlined } from '@ant-design/icons';
+import {
+  UnorderedListOutlined,
+  AreaChartOutlined,
+  EditOutlined,
+  DeleteOutlined,
+} from '@ant-design/icons';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import AddEditTransaction from '../components/AddEditTransaction';
@@ -18,6 +23,7 @@ const Home = () => {
   const [selectedRange, setSelectedRange] = useState([]);
   const [type, setType] = useState('all');
   const [viewType, setViewType] = useState('table');
+  const [selectedItemForEdit, setSelectedItemForEdit] = useState(null);
   const getTransactions = async () => {
     try {
       const user = JSON.parse(localStorage.getItem('expense-tracker-user'));
@@ -71,6 +77,24 @@ const Home = () => {
       title: '关联',
       key: 'reference',
       dataIndex: 'reference',
+    },
+    {
+      title: '操作',
+      key: 'actions',
+      dataIndex: 'actions',
+      render: (text, record) => {
+        return (
+          <div>
+            <EditOutlined
+              onClick={() => {
+                setSelectedItemForEdit(record);
+                setShowAddEditTransactionModal(true);
+              }}
+            />
+            <DeleteOutlined className='mx-3' />
+          </div>
+        );
+      },
     },
   ];
   return (
@@ -180,6 +204,8 @@ const Home = () => {
         <AddEditTransaction
           showAddEditTransactionModal={showAddEditTransactionModal}
           setShowAddEditTransactionModal={setShowAddEditTransactionModal}
+          selectedItemForEdit={selectedItemForEdit}
+          setSelectedItemForEdit={setSelectedItemForEdit}
           getTransactions={getTransactions}
         />
       )}

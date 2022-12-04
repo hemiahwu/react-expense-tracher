@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 const AddEditTransaction = ({
   setShowAddEditTransactionModal,
   showAddEditTransactionModal,
+  selectedItemForEdit,
+  setSelectedItemForEdit,
   getTransactions,
 }) => {
   const [loading, setLoading] = useState(false);
@@ -30,13 +32,18 @@ const AddEditTransaction = ({
   };
   return (
     <Modal
-      title='添加流水'
+      title={selectedItemForEdit ? '编辑交易流水' : '添加交易流水'}
       open={showAddEditTransactionModal}
       footer={false}
       onCancel={() => setShowAddEditTransactionModal(false)}
     >
       {loading && <Spinner />}
-      <Form layout='vertical' className='transaction-form' onFinish={onFinish}>
+      <Form
+        layout='vertical'
+        className='transaction-form'
+        onFinish={onFinish}
+        initialValues={selectedItemForEdit}
+      >
         <Form.Item label='金额' name='amount'>
           <Input type='text' />
         </Form.Item>
