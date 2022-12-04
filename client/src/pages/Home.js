@@ -7,6 +7,7 @@ import DefaultLayout from '../components/DefaultLayout';
 import Spinner from '../components/Spinner';
 import '../resources/transaction.css';
 import moment from 'moment';
+import Analytics from '../components/Analytics';
 const Home = () => {
   const { RangePicker } = DatePicker;
   const [showAddEditTransactionModal, setShowAddEditTransactionModal] =
@@ -165,9 +166,13 @@ const Home = () => {
 
       {/* 下方:显示交易流水 */}
       <div className='table-analtics'>
-        <div className='table'>
-          <Table columns={columns} dataSource={transactions} />
-        </div>
+        {viewType === 'table' ? (
+          <div className='table'>
+            <Table columns={columns} dataSource={transactions} />
+          </div>
+        ) : (
+          <Analytics transactions={transactions} />
+        )}
       </div>
 
       {/* 添加流水的modal弹出框 */}
