@@ -127,6 +127,33 @@ const Analytics = ({ transactions }) => {
             })}
           </div>
         </div>
+        <div className='col-md-6'>
+          <div className='category-analytics'>
+            <h4>支出 - 类别分析</h4>
+            {categories.map((category) => {
+              const amount = transactions
+                .filter(
+                  (transaction) =>
+                    transaction.type === 'expense' &&
+                    transaction.category === category
+                )
+                .reduce((acc, transaction) => acc + transaction.amount, 0);
+              return (
+                amount > 0 && (
+                  <div className='category-card'>
+                    <h5>{category}</h5>
+                    <Progress
+                      strokeColor='#0B5AD9'
+                      percent={((amount / totalExpenseTurnover) * 100).toFixed(
+                        0
+                      )}
+                    />
+                  </div>
+                )
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
