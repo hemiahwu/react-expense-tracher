@@ -35,6 +35,19 @@ const Analytics = ({ transactions }) => {
 
   const totalExpenseTurnoverPercentage =
     (totalExpenseTurnover / totalTurnover) * 100;
+
+  const categories = [
+    'salary',
+    'entertainment',
+    'freelance',
+    'food',
+    'travel',
+    'investment',
+    'education',
+    'medical',
+    'tax',
+  ];
+
   return (
     <div className='analytics'>
       <div className='row'>
@@ -82,6 +95,36 @@ const Analytics = ({ transactions }) => {
                 percent={totalExpenseTurnoverPercentage.toFixed(0)}
               />
             </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div className='row'>
+        <div className='col-md-6'>
+          <div className='category-analytics'>
+            <h4>收入 - 类别分析</h4>
+            {categories.map((category) => {
+              const amount = transactions
+                .filter(
+                  (transaction) =>
+                    transaction.type === 'income' &&
+                    transaction.category === category
+                )
+                .reduce((acc, transaction) => acc + transaction.amount, 0);
+              return (
+                amount > 0 && (
+                  <div className='category-card'>
+                    <h5>{category}</h5>
+                    <Progress
+                      strokeColor='#0B5AD9'
+                      percent={((amount / totalIncomeTurnover) * 100).toFixed(
+                        0
+                      )}
+                    />
+                  </div>
+                )
+              );
+            })}
           </div>
         </div>
       </div>

@@ -28,6 +28,7 @@
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     padding:15px;
+    overflow-y: scroll;
 }
 
 .spinner{
@@ -43,6 +44,9 @@
 .ant-dropdown-menu-title-content a {
     color:rgba(0, 0, 0, 0.75) !important;
 }
+
+
+
 @media screen and(max-width:700px){
     .layout{
         margin:0 15px;
