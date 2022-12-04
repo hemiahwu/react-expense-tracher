@@ -17,12 +17,13 @@ router.post('/add-transaction', async (req, res) => {
 //获取所有交易流水API
 router.post('/get-all-transactions', async (req, res) => {
   try {
-    const { frequency, selectedRange } = req.body;
+    const { frequency, selectedRange, type } = req.body;
     const transactions = await Transaction.find({
       ...(frequency !== 'custom'
         ? { date: { $gt: moment().subtract(Number(frequency), 'd').toDate() } }
         : { date: { $gte: selectedRange[0], $lte: selectedRange[1] } }),
       userid: req.body.userid,
+      ...(type !== 'all' && { type }),
     });
     res.send(transactions);
   } catch (error) {

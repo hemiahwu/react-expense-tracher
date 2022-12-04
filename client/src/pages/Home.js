@@ -14,6 +14,7 @@ const Home = () => {
   const [transactions, setTransactions] = useState([]);
   const [frequency, setFrequency] = useState('7');
   const [selectedRange, setSelectedRange] = useState([]);
+  const [type, setType] = useState('all');
   const getTransactions = async () => {
     try {
       const user = JSON.parse(localStorage.getItem('expense-tracker-user'));
@@ -24,6 +25,7 @@ const Home = () => {
           userid: user._id,
           frequency,
           ...(frequency === 'custom' && { selectedRange }),
+          type,
         }
       );
       setTransactions(response.data);
@@ -37,7 +39,7 @@ const Home = () => {
   //获取所有交易流水
   useEffect(() => {
     getTransactions();
-  }, [frequency, selectedRange]);
+  }, [frequency, selectedRange, type]);
 
   //定义表格columns
   const columns = [
@@ -73,7 +75,7 @@ const Home = () => {
       {loading && <Spinner />}
       {/* 上方:过滤及类型切换，添加交易按钮 */}
       <div className='filter d-flex justify-content-between align-items-center'>
-        <div className='filter d-flex justify-content-between align-items-center'>
+        <div className='d-flex '>
           <div className='d-flex flex-column'>
             <h6>选择日期</h6>
             <Select
@@ -95,6 +97,33 @@ const Home = () => {
                 {
                   value: 'custom',
                   label: '自定义',
+                },
+              ]}
+            />
+            {frequency === 'custom' && (
+              <RangePicker
+                value={selectedRange}
+                onChange={(value) => setSelectedRange(value)}
+              />
+            )}
+          </div>
+          <div className='d-flex flex-column mx-5'>
+            <h6>选择交易类型</h6>
+            <Select
+              value={type}
+              onChange={(value) => setType(value)}
+              options={[
+                {
+                  value: 'all',
+                  label: '所有类型',
+                },
+                {
+                  value: 'income',
+                  label: '收入',
+                },
+                {
+                  value: 'expense',
+                  label: '支出',
                 },
               ]}
             />
