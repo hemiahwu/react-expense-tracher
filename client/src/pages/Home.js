@@ -1,4 +1,5 @@
 import { Form, Input, message, Modal, Select, Table, DatePicker } from 'antd';
+import { UnorderedListOutlined, AreaChartOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import AddEditTransaction from '../components/AddEditTransaction';
@@ -15,6 +16,7 @@ const Home = () => {
   const [frequency, setFrequency] = useState('7');
   const [selectedRange, setSelectedRange] = useState([]);
   const [type, setType] = useState('all');
+  const [viewType, setViewType] = useState('table');
   const getTransactions = async () => {
     try {
       const user = JSON.parse(localStorage.getItem('expense-tracker-user'));
@@ -135,7 +137,23 @@ const Home = () => {
             )}
           </div>
         </div>
-        <div>
+        <div className='d-flex'>
+          <div>
+            <div className='view-switch mx-5'>
+              <UnorderedListOutlined
+                className={`mx-2 ${
+                  viewType === 'table' ? 'action-icon' : 'inactive-icon'
+                } `}
+                onClick={() => setViewType('table')}
+              />
+              <AreaChartOutlined
+                className={`mx-2 ${
+                  viewType === 'analytics' ? 'action-icon' : 'inactive-icon'
+                } `}
+                onClick={() => setViewType('analytics')}
+              />
+            </div>
+          </div>
           <button
             className='primary'
             onClick={() => setShowAddEditTransactionModal(true)}

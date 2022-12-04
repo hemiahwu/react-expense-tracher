@@ -26,3 +26,21 @@
      box-shadow: none !important;
      outline: none !important;
 }
+
+.view-switch{
+    border:1px solid rgba(0,0,0,0.71) !important;
+    border-radius: 3px;
+    padding:5px 10px;
+}
+.anticion svg {
+    font-size: 20px ;
+    cursor: pointer;
+}
+
+.active-icon{
+    color:black
+}
+
+.inactive-icon{
+    color: gray;
+}
