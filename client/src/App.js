@@ -9,7 +9,18 @@ import Home from './pages/Home';
 import Test from './pages/Test';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+      easing: 'ease-in-back',
+    });
+    AOS.refresh();
+  }, []);
   return (
     <div className='App'>
       <Routers>

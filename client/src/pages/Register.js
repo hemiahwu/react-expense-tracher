@@ -29,7 +29,7 @@ const Register = () => {
     <div className='register'>
       {loading && <Spinner />}
       <div className='row justify-content-center align-items-center w-100 h-100'>
-        <div className='col-md-5'>
+        <div className='col-md-5' data-aos='fade-right'>
           {/* 左侧图片 */}
           <div className='lottie'>
             <lottie-player
@@ -41,7 +41,7 @@ const Register = () => {
             ></lottie-player>
           </div>
         </div>
-        <div className='col-md-4'>
+        <div className='col-md-4' data-aos='fade-left'>
           {/* form表单 */}
           <Form layout='vertical' onFinish={onFinish}>
             <h1>用户注册</h1>

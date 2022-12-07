@@ -65,7 +65,7 @@ const AddEditTransaction = ({
         </Form.Item>
         <Form.Item label='类型' name='type'>
           <Select
-            initialvalue='收入'
+            defaultValue='收入'
             options={[
               {
                 value: 'income',
@@ -80,7 +80,7 @@ const AddEditTransaction = ({
         </Form.Item>
         <Form.Item label='分类' name='category'>
           <Select
-            initialvalue='工资'
+            defaultValue='工资'
             options={[
               {
                 value: 'salary',

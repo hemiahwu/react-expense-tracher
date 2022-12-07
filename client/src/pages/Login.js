@@ -39,7 +39,7 @@ const Login = () => {
     <div className='register'>
       {loading && <Spinner />}
       <div className='row justify-content-center align-items-center w-100 h-100'>
-        <div className='col-md-4'>
+        <div className='col-md-4' data-aos='fade-right'>
           {/* form表单 */}
           <Form layout='vertical' onFinish={onFinish}>
             <h1>用户登录</h1>
@@ -60,7 +60,7 @@ const Login = () => {
           </Form>
         </div>
 
-        <div className='col-md-5'>
+        <div className='col-md-5' data-aos='fade-left'>
           {/* 左侧图片 */}
           <div className='lottie'>
             <lottie-player
