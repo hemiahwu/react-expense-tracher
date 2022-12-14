@@ -23,7 +23,7 @@ function App() {
   }, []);
   return (
     <div className='App'>
-      <Routers>
+      <Routers basename='/frontend/react/7001'>
         <Routes>
           <Route
             path='/'

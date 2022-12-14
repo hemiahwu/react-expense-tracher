@@ -49,6 +49,12 @@
     border:1px solid black !important;
 }
 
+
+.ant-pagination a {
+    color:black !important;
+}
+
+
 @media screen and (max-width:600px){
     .filter{
         overflow-x: scroll;

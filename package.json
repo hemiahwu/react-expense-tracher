@@ -2,7 +2,7 @@
   "name": "expense-tracker",
   "version": "1.0.0",
   "description": "lesson-04:添加默认布局组件样式",
-  "main": "server.js",
+  "main": "7001.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
